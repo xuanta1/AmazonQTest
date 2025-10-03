@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAmazonQ", "TestAmazonQ\TestAmazonQ.csproj", "{5D710FD4-7B67-4DE3-9B0B-A5AA91C98ABC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAmazonQ.Tests", "TestAmazonQ.Tests\TestAmazonQ.Tests.csproj", "{AA310242-35F4-4305-97AC-59E8983F55FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D710FD4-7B67-4DE3-9B0B-A5AA91C98ABC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D710FD4-7B67-4DE3-9B0B-A5AA91C98ABC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D710FD4-7B67-4DE3-9B0B-A5AA91C98ABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D710FD4-7B67-4DE3-9B0B-A5AA91C98ABC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA310242-35F4-4305-97AC-59E8983F55FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA310242-35F4-4305-97AC-59E8983F55FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA310242-35F4-4305-97AC-59E8983F55FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA310242-35F4-4305-97AC-59E8983F55FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
