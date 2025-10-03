@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TestAmazonQ.Models;
 
+/// <summary>
+/// Role entity model
+/// </summary>
 public class Role
 {
     [Key]

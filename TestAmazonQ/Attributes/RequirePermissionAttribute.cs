@@ -5,6 +5,9 @@ using TestAmazonQ.Services;
 
 namespace TestAmazonQ.Attributes;
 
+/// <summary>
+/// Authorization attribute that requires specific permission
+/// </summary>
 public class RequirePermissionAttribute : Attribute, IAsyncAuthorizationFilter
 {
     private readonly string _permission;
@@ -14,6 +17,10 @@ public class RequirePermissionAttribute : Attribute, IAsyncAuthorizationFilter
         _permission = permission;
     }
 
+    /// <summary>
+    /// Performs authorization check for required permission
+    /// </summary>
+    /// <param name="context">Authorization filter context</param>
     public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
     {
         var user = context.HttpContext.User;

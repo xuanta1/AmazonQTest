@@ -5,6 +5,9 @@ using TestAmazonQ.Models;
 
 namespace TestAmazonQ.Data;
 
+/// <summary>
+/// Application database context
+/// </summary>
 public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }

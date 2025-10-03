@@ -2,6 +2,10 @@
 
 namespace TestAmazonQ.Models.Responses;
 
+/// <summary>
+/// Paginated result wrapper
+/// </summary>
+/// <typeparam name="T">Type of items in the result</typeparam>
 public class PagedResult<T>
 {
     public List<T> Items { get; set; }

@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TestAmazonQ.Models;
 
+/// <summary>
+/// Permission entity model
+/// </summary>
 public class Permission
 {
     [Key]

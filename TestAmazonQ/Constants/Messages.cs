@@ -2,6 +2,9 @@
 
 namespace TestAmazonQ.Constants;
 
+/// <summary>
+/// Application message constants
+/// </summary>
 public static class Messages
 {
     // Auth Messages

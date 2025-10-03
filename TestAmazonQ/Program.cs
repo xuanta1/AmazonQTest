@@ -49,9 +49,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // Add Repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-
-// Add Repositories
-builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IPermissionRepository, PermissionRepository>();
 
@@ -92,6 +89,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Security headers
+app.Use(async (context, next) =>
+{
+    context.Response.Headers["X-Content-Type-Options"] = "nosniff";
+    context.Response.Headers["X-Frame-Options"] = "DENY";
+    context.Response.Headers["X-XSS-Protection"] = "1; mode=block";
+    context.Response.Headers["Referrer-Policy"] = "strict-origin-when-cross-origin";
+    await next();
+});
 
 app.UseHttpsRedirection();
 
