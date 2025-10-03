@@ -1,0 +1,3 @@
+@echo off
+echo Starting application...
+dotnet run
