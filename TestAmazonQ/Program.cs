@@ -53,6 +53,8 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 // Add Services
 builder.Services.AddScoped<JwtService>();
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<PermissionService>();
+builder.Services.AddScoped<RoleService>();
 
 // Add JWT Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

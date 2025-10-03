@@ -4,6 +4,8 @@
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TestAmazonQ.Attributes;
+using TestAmazonQ.Constants;
 using TestAmazonQ.Models.Requests;
 using TestAmazonQ.Services;
 
@@ -22,6 +24,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpGet]
+    [RequirePermission(Permissions.UserRead)]
     public async Task<IActionResult> GetPaged(int pageNumber = 1, int pageSize = 10)
     {
         var result = await _userService.GetUsersPagedAsync(pageNumber, pageSize);
@@ -33,6 +36,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [RequirePermission(Permissions.UserRead)]
     public async Task<IActionResult> GetById(int id)
     {
         var result = await _userService.GetUserByIdAsync(id);
@@ -44,6 +48,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpPost]
+    [RequirePermission(Permissions.UserCreate)]
     public async Task<IActionResult> Create([FromBody] CreateUserRequest request)
     {
         var result = await _userService.CreateUserAsync(request.Username, request.Password);
@@ -55,6 +60,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpPut("{id}")]
+    [RequirePermission(Permissions.UserUpdate)]
     public async Task<IActionResult> Update(int id, [FromBody] UpdateUserRequest request)
     {
         var result = await _userService.UpdateUserAsync(id, request.Username, request.Password);
@@ -66,6 +72,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [RequirePermission(Permissions.UserDelete)]
     public async Task<IActionResult> Delete(int id)
     {
         var result = await _userService.DeleteUserAsync(id);
