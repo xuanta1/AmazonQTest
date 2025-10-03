@@ -53,26 +53,105 @@ JwtWebApi/
 
 ## Cách chạy ứng dụng
 
-1. Build project:
+### Prerequisites
+- .NET 8 SDK
+- Git
+
+### Cài đặt
+1. Clone repository:
 ```bash
-dotnet build
+git clone https://github.com/xuanta1/TestAmazonQ.git
+cd TestAmazonQ
 ```
 
-2. Chạy ứng dụng:
+2. Restore packages:
 ```bash
+dotnet restore
+```
+
+3. Navigate to project:
+```bash
+cd TestAmazonQ
+```
+
+### Chạy ứng dụng
+
+#### Tùy chọn 1: Chạy bình thường (giữ data cũ)
+```bash
+# Sử dụng script
+reset-db.bat
+# HOẶC
+run.bat
+# HOẶC manual
 dotnet run
 ```
 
-3. Truy cập Swagger UI: `https://localhost:7xxx/swagger`
+#### Tùy chọn 2: Reset database và chạy
+```bash
+reset-db.bat --reset
+```
+
+#### Tùy chọn 3: Quản lý database thủ công
+```bash
+# Xóa và tạo lại database
+dotnet ef database drop --force
+dotnet ef database update
+
+# Sau đó chạy ứng dụng
+dotnet run
+```
+
+### Truy cập ứng dụng
+- **Swagger UI:** `https://localhost:7xxx/swagger`
+- **API Base URL:** `https://localhost:7xxx/api`
+
+### Tài khoản mặc định
+- **Username:** `admin`
+- **Password:** `admin123`
+
+### Quick Start Scripts
+
+| Script | Mô tả |
+|--------|-------|
+| `run.bat` | Chạy ứng dụng bình thường |
+| `reset-db.bat` | Chạy ứng dụng (giữ data) |
+| `reset-db.bat --reset` | **Reset database và chạy** |
 
 ## Cách test với Swagger
 
 1. Mở Swagger UI
-2. Thực hiện login với username: `admin`, password: `password`
+2. Thực hiện login với username: `admin`, password: `admin123`
 3. Copy token từ response
 4. Click nút "Authorize" trên Swagger UI
 5. Nhập: `Bearer <token>`
 6. Test các protected endpoints
+
+## Testing
+
+Chạy unit tests:
+```bash
+cd TestAmazonQ.Tests
+dotnet test
+```
+
+## Database Reset Options
+
+1. **Sử dụng Script (Khuyến nghị)**
+   ```bash
+   reset-db.bat --reset
+   ```
+
+2. **Xóa file thủ công**
+   ```bash
+   del app.db
+   dotnet run
+   ```
+
+3. **Entity Framework Commands**
+   ```bash
+   dotnet ef database drop --force
+   dotnet ef database update
+   ```
 
 ## Cấu hình JWT
 
