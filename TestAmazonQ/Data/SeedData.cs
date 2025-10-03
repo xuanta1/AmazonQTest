@@ -1,5 +1,6 @@
 #nullable disable
 using TestAmazonQ.Models;
+using BCrypt.Net;
 
 namespace TestAmazonQ.Data;
 
@@ -76,6 +77,29 @@ public static class SeedData
             { 
                 RoleId = userRole.Id, 
                 PermissionId = readPermission.Id 
+            });
+            
+            await context.SaveChangesAsync();
+        }
+        
+        // Seed Admin User
+        if (!context.Users.Any(u => u.Username == "admin"))
+        {
+            var adminUser = new User
+            {
+                Username = "admin",
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword("admin123")
+            };
+            
+            context.Users.Add(adminUser);
+            await context.SaveChangesAsync();
+            
+            // Gán role Admin cho user admin
+            var adminRole = context.Roles.First(r => r.Name == "Admin");
+            context.UserRoles.Add(new UserRole
+            {
+                UserId = adminUser.Id,
+                RoleId = adminRole.Id
             });
             
             await context.SaveChangesAsync();
