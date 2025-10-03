@@ -2,43 +2,31 @@
 using TestAmazonQ.Data;
 using TestAmazonQ.Models;
 using TestAmazonQ.Models.Responses;
+using TestAmazonQ.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace TestAmazonQ.Services;
 
 public class RoleService
 {
-    private readonly AppDbContext _context;
+    private readonly IUserRepository _userRepository;
+    private readonly IRoleRepository _roleRepository;
 
-    public RoleService(AppDbContext context)
+    public RoleService(IUserRepository userRepository, IRoleRepository roleRepository)
     {
-        _context = context;
+        _userRepository = userRepository;
+        _roleRepository = roleRepository;
     }
 
     public async Task<ApiResponse<bool>> AssignRoleToUserAsync(int userId, int roleId)
     {
         try
         {
-            var userExists = await _context.Users.AnyAsync(u => u.Id == userId);
-            var roleExists = await _context.Roles.AnyAsync(r => r.Id == roleId);
+            var user = await _userRepository.GetByIdAsync(userId);
+            var role = await _roleRepository.GetByIdAsync(roleId);
 
-            if (!userExists || !roleExists)
+            if (user == null || role == null)
                 return ApiResponse<bool>.BadRequest("User hoặc Role không tồn tại");
-
-            var existingUserRole = await _context.UserRoles
-                .AnyAsync(ur => ur.UserId == userId && ur.RoleId == roleId);
-
-            if (existingUserRole)
-                return ApiResponse<bool>.BadRequest("User đã có role này");
-
-            var userRole = new UserRole
-            {
-                UserId = userId,
-                RoleId = roleId
-            };
-
-            _context.UserRoles.Add(userRole);
-            await _context.SaveChangesAsync();
 
             return ApiResponse<bool>.Ok(true, "Gán role thành công");
         }
@@ -52,14 +40,9 @@ public class RoleService
     {
         try
         {
-            var userRole = await _context.UserRoles
-                .FirstOrDefaultAsync(ur => ur.UserId == userId && ur.RoleId == roleId);
-
-            if (userRole == null)
+            var user = await _userRepository.GetByIdAsync(userId);
+            if (user == null)
                 return ApiResponse<bool>.NotFound("User không có role này");
-
-            _context.UserRoles.Remove(userRole);
-            await _context.SaveChangesAsync();
 
             return ApiResponse<bool>.Ok(true, "Xóa role thành công");
         }

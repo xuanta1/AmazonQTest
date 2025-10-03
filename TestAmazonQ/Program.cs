@@ -50,6 +50,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Add Repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
+// Add Repositories
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddScoped<IPermissionRepository, PermissionRepository>();
+
 // Add Services
 builder.Services.AddScoped<JwtService>();
 builder.Services.AddScoped<UserService>();
