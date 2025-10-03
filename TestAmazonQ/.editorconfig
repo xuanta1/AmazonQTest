@@ -1,0 +1,16 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = crlf
+insert_final_newline = true
+indent_style = space
+indent_size = 4
+
+[*.cs]
+# Disable specific warnings
+dotnet_diagnostic.CA1031.severity = none
+dotnet_diagnostic.CS8618.severity = none
+dotnet_diagnostic.CS8602.severity = none
+dotnet_diagnostic.CS8604.severity = none
+dotnet_diagnostic.IDE0290.severity = none
